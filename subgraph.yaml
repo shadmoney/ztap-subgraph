@@ -1,0 +1,32 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: AccessControl
+    network: mumbai
+    source:
+      address: "0x5347382fE76e19cb006f44df473320CF0b591bbB"
+      abi: AccessControl
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AccessDenied
+        - AccessGranted
+        - AuthenticationFailure
+        - AuthenticationSuccess
+      abis:
+        - name: AccessControl
+          file: ./abis/AccessControl.json
+      eventHandlers:
+        - event: AccessDenied(address,address,uint8,string)
+          handler: handleAccessDenied
+        - event: AccessGranted(address,address,uint8)
+          handler: handleAccessGranted
+        - event: AuthenticationFailure(address)
+          handler: handleAuthenticationFailure
+        - event: AuthenticationSuccess(address)
+          handler: handleAuthenticationSuccess
+      file: ./src/access-control.ts

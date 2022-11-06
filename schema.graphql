@@ -1,0 +1,24 @@
+type AccessDenied @entity {
+  id: ID!
+  sub_addr: Bytes! # address
+  obj_addr: Bytes! # address
+  action: Int! # uint8
+  message: String! # string
+}
+
+type AccessGranted @entity {
+  id: ID!
+  sub_addr: Bytes! # address
+  obj_addr: Bytes! # address
+  action: Int! # uint8
+}
+
+type AuthenticationFailure @entity {
+  id: ID!
+  sub_addr: Bytes! # address
+}
+
+type AuthenticationSuccess @entity {
+  id: ID!
+  sub_addr: Bytes! # address
+}
